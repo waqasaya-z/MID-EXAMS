@@ -7,7 +7,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenu
@@ -19,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -84,9 +88,14 @@ fun AddTransaction(onClick: (title: String?, amount: String?, type: String?) -> 
     }
 
     Column {
+        Text(text = "Add Transactions")
+        Spacer(modifier = Modifier.padding(5.dp))
         TextField(value = title.value, onValueChange = { title.value = it }, label = { Text(text = "Title") })
+        Spacer(modifier = Modifier.padding(5.dp))
         TextField(value = amount.value, onValueChange = { amount.value = it }, label = { Text(text = "Amount") })
+        Spacer(modifier = Modifier.padding(5.dp))
         TextField(value = type.value, onValueChange = { type.value = it }, label = { Text(text = "Transaction Type") })
+        Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { onClick(title.value.text, amount.value.text, type.value.text) }) {
             Text(text = "ADD TRANSACTION")
         }
@@ -98,31 +107,35 @@ fun AddTransaction(onClick: (title: String?, amount: String?, type: String?) -> 
 fun MainScreen(navController: NavHostController, title: String?, amount: String?, type: String?) {
     Column {
         Card (
-            modifier = Modifier.fillMaxWidth().clickable {
-                navController.navigate("transaction")
-            }
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable {
+                    navController.navigate("transaction")
+                }
         ){
             Text(text = "Incomes")
             Text(text = "R$ $amount")
         }
+        Spacer(modifier = Modifier.padding(5.dp))
         Card (
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Expenses")
             Text(text = "R$ -300")
         }
-
+        Spacer(modifier = Modifier.padding(5.dp))
         Card (
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Total")
             Text(text = "R$ $amount")
         }
-
+        Spacer(modifier = Modifier.padding(5.dp))
         Card (
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(text = "Last Transactions" )
+            Spacer(modifier = Modifier.padding(5.dp))
             DisplayTable(title, amount, type)
         }
 
