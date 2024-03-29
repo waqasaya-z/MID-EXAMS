@@ -3,6 +3,7 @@ package com.example.skysight
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -125,7 +127,7 @@ fun MainScreen(navController: NavHostController, title: String?, amount: String?
         }
         Spacer(modifier = Modifier.padding(5.dp))
         Card (
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.background(Color.Red).fillMaxWidth()
         ) {
             Text(text = "Total")
             Text(text = "R$ $amount")
